@@ -10,7 +10,8 @@ export class ApplicationMemory
     {
         this.#initControllers();
         this.#initViews();
-        this.#controllerMemory.newGame();
+        //this.#controllerMemory.newGame();
+        this.#controllerMemory.start();
     }
 
     #initControllers()

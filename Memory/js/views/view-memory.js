@@ -14,8 +14,7 @@ export class ViewMemory extends Observer
 
     notify()
     {
-        const cards = this.#controllerMemory.memory;
-        this.displayCards(cards);
+        this.displayCards();
     }
 
     displayCard(card){
@@ -28,11 +27,8 @@ export class ViewMemory extends Observer
     }
 
     displayCards(){
-        const cardsContainer = document.getElementsByClassName("cards")[0];
-        cardsContainer.innerHTML = "";
-
-        for (let i = 0; i < cards.getCardsNumber(); i++) {
-            this.displayCard(cards.getCard(i));
+        for(let i = 0; i < this.#controllerMemory.memory.getCardsNumber(); i++){
+            this.displayCard(this.#controllerMemory.memory.getCard(i));
         }
     }
 }

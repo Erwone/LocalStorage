@@ -7,4 +7,10 @@ export class Card{
     }
 
     get value() { return this.#value }
+
+    toData(){
+        const myCard = {
+            value: this.value,
+        }
+    }
 }

@@ -12,14 +12,11 @@ export class Memory {
     for (let i = 0; i < pairsNumber; i++) {
       const value = 0x1f90c + i;
       this.#cards.push(new Card(value), new Card(value));
-    
-      const card = new Card(value);
-      const localisation = Math.floor(Math.random()*this.#cards.length)
-      this.#cards.splice(localisation, 0, card);
-  
+      
+      this.#cards = this.#cards.sort(() => Math.random() - 0.5);
     }
   }
-  
+
   getCardsNumber() {
     return this.#cards.length;
   }
@@ -27,4 +24,29 @@ export class Memory {
   getCard(index) {
     return this.#cards[index];
   }
+
+  toData(){
+    let myCards = [];
+    for(let i = 0; i < this.getCardsNumber(); i++){
+      const tableau = { 
+        value: this.getCard(i).value, 
+      }
+      myCards.push(tableau);
+    }
+
+    const myMemory = {
+        myCards,
+    }
+
+    return myMemory;
+}
+
+fromData(myMemory){
+  this.#cards = [];
+  for(let i = 0; i < myMemory.myCards.length; i++){
+      this.#cards.push(myMemory.myCards[i]);
+  }
+  return this.#cards;
+}
+
 }
